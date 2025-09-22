@@ -1,18 +1,26 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 include "koneksi.php";
 
 if (isset($_POST['simpan'])) {
-    $nama_peralatan = $_POST['nama_peralatan'];
-    $kategori = $_POST['kategori'];
-    $harga_sewa = $_POST['harga_sewa'];
-    $stok = $_POST['stok'];
+    // Ambil data dari form
+    $nama_peralatan = isset($_POST['nama_peralatan']) ? $_POST['nama_peralatan'] : '';
+    $kategori       = isset($_POST['kategori']) ? $_POST['kategori'] : '';
+    $harga_sewa     = isset($_POST['harga_sewa']) ? $_POST['harga_sewa'] : '';
+    $stok           = isset($_POST['stok']) ? $_POST['stok'] : '';
+    $email          = isset($_POST['email']) ? $_POST['email'] : null;
+    $umur           = isset($_POST['umur']) ? $_POST['umur'] : null;
 
-    $sql = "INSERT INTO peralatan (nama_peralatan, kategori, harga_sewa, stok) 
-            VALUES ('$nama_peralatan', '$kategori', '$harga_sewa', '$stok')";
-    $result = mysqli_query($conn, $sql);
+    // Query insert
+    $query = "INSERT INTO peralatan (nama_peralatan, email, umur, kategori, harga_sewa, stok)
+              VALUES ('$nama_peralatan', '$email', '$umur', '$kategori', '$harga_sewa', '$stok')";
+
+    $result = mysqli_query($conn, $query);
 
     if ($result) {
         header("Location: index.php");
+        exit;
     } else {
         echo "Gagal menambahkan data: " . mysqli_error($conn);
     }
@@ -101,7 +109,13 @@ if (isset($_POST['simpan'])) {
             <input type="number" step="0.01" name="harga_sewa" required>
 
             <label for="stok">Stok</label>
-            <input type="number" name="stok" required>
+             <input type="number" step="0.01" name="stok" required>
+
+            <label for="umur">Umur</label>
+             <input type="number" step="0.01" name="umur" required>
+
+            <label for="email">Email</label>
+             <input type="text" name="email" required>
 
             <button type="submit" name="simpan">Simpan</button>
         </form>
@@ -109,3 +123,4 @@ if (isset($_POST['simpan'])) {
     </div>
 </body>
 </html>
+

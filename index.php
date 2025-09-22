@@ -1,4 +1,9 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+?>
+
+<?php
 include 'koneksi.php';
 $result = mysqli_query($conn, "SELECT * FROM peralatan");
 ?>
@@ -119,8 +124,9 @@ table tr:hover {
             <th>Nama Peralatan</th>
             <th>Kategori</th>
             <th>Harga sewa</th>
-            <th>stok</th> 
-            <th>edit/hapus</th>
+            <th>stok</th>
+            <th>email</th>
+            <th>umur</th>
         </tr>
         <?php while($row = mysqli_fetch_assoc($result)) { ?>
         <tr>
@@ -129,7 +135,8 @@ table tr:hover {
             <td><?= $row['kategori'] ?></td>
             <td><?= $row['harga_sewa'] ?></td>
             <td><?= $row['stok'] ?></td>
-            <td>
+            <td><?= $row['email'] ?></td>
+            <td><?= $row['umur'] ?></td>
                 <a href="edit.php?id=<?= $row['id'] ?>" class="edit">Edit</a>
                 <a href="hapus.php?id=<?= $row['id'] ?>" class="hapus" onclick="return confirm('Yakin hapus?')">Hapus</a>
             </td>
@@ -139,3 +146,4 @@ table tr:hover {
 </div>
 </body>
 </html>
+	

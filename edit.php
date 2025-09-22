@@ -26,6 +26,8 @@ $data = mysqli_fetch_assoc($q);
         <input type="text" name="kategori" value="<?= $data['kategori'] ?>" required>
         <input type="number" name="harga_sewa" value="<?= $data['harga_sewa'] ?>" required>
         <input type="text" name="stok" value="<?= $data['stok'] ?>" required>
+        <input type="text" name="email" value="<?= $data['email'] ?>" required>
+        <input type="text" name="umur" value="<?= $data['umur'] ?>" required>
         <button type="submit" name="update">Update</button>
     </form>
 </div>
@@ -38,12 +40,16 @@ if (isset($_POST['update'])) {
     $kategori = $_POST['kategori'];
     $harga = $_POST['harga_sewa'];
     $stok = $_POST['stok'];
+    $stok = $_POST['email'];
+    $stok = $_POST['umur'];
 
     mysqli_query($conn, "UPDATE peralatan SET 
                             nama_peralatan='$nama', 
                             kategori='$kategori', 
                             harga_sewa='$harga', 
                             stok='$stok'
+                            email='$email'
+                            umur='$umur'
                          WHERE id='$id'");
     echo "<script>alert('Data berhasil diupdate');window.location='index.php';</script>";
 }
