@@ -1,7 +1,7 @@
 <?php
 $host = "localhost";
-$user = "root";
-$pass = "";
+$user = "xirpl1-31";
+$pass = "0081441342";
 $db   = "sewa_outdoor_db";
 
 $conn = mysqli_connect($host, $user, $pass, $db);
